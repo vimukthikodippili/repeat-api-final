@@ -23,7 +23,6 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "lk.ijse")
 @PropertySource("classpath:application.properties")
-
 public class JPAConflic {
 
     @Autowired

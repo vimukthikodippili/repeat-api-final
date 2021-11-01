@@ -5,11 +5,12 @@ import lk.ijse.dto.ProductDTO;
 import java.util.ArrayList;
 
 public interface ProductService {
-    void addCustomer(ProductDTO dto);
 
-    void deleteProduct(String id);
+    void addProduct(ProductDTO dto);
 
-    ProductDTO searchProduct(String id);
+    void deleteProduct(int id);
+
+    ProductDTO searchProduct(int id);
 
     ArrayList<ProductDTO> getAllProduct();
 

@@ -17,12 +17,7 @@ import java.util.List;
 @Data
 public class Catagory {
     @Id
-    private String CatagoryID;
-    private String CatagoryName;
-
-
-    @OneToMany(mappedBy = "catagories",cascade = CascadeType.ALL)
-    private List<Product> products=new ArrayList<>();
-
+    private String categoryID;
+    private String categoryName;
 
 }

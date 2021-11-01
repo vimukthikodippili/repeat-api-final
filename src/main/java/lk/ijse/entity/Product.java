@@ -4,29 +4,38 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class Product {
+
     @Id
-    private String productID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int productID;
     private String name;
     private String description;
     private String price;
     private String img;
-    @ManyToOne(optional = false)
-    private Catagory catagories;
 
-    public Catagory getCatagories() {
-        return catagories;
-    }
+    @ManyToOne
+    @JoinColumn(name = "catId", referencedColumnName = "categoryID")
+    private Catagory catId;
 
-    public void setCatagories(Catagory catagories) {
-        this.catagories = catagories;
-    }
+
+
+
+
+
+
+//    public Catagory getCatagories() {
+//        return catagories;
+//    }
+//
+//    public void setCatagories(Catagory catagories) {
+//        this.catagories = catagories;
+//    }
 }

@@ -2,30 +2,38 @@ package lk.ijse.service.impl;
 
 import lk.ijse.dto.CatagoryDTO;
 import lk.ijse.entity.Catagory;
+import lk.ijse.exeption.ValidateException;
 import lk.ijse.repo.CatagoryRepo;
 import lk.ijse.service.CatagoryService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class CatagoryServiceImpl implements CatagoryService {
+
     @Autowired
     private CatagoryRepo catagoryRepo;
     @Autowired
     private ModelMapper modelMapper;
 
+
     @Override
     public void addCatagory(CatagoryDTO dto) {
-        if (catagoryRepo.existsById(dto.getCatagoryID())) {
-            //throw new ValidateException("Customer Already Exist");
+
+        if (catagoryRepo.existsById(dto.getCategoryID())){
+            throw new ValidateException("Category already exists");
         }
-        catagoryRepo.save(modelMapper.map(dto, Catagory.class));
+
+        Catagory catagory = modelMapper.map(dto,Catagory.class);
+        catagoryRepo.save(catagory);
     }
 
     @Override
@@ -55,7 +63,7 @@ public class CatagoryServiceImpl implements CatagoryService {
 
     @Override
     public void updateCatagory(CatagoryDTO dto) {
-        if (catagoryRepo.existsById(dto.getCatagoryID())) {
+        if (catagoryRepo.existsById(dto.getCategoryID())) {
             catagoryRepo.save(modelMapper.map(dto, Catagory.class));
 
 

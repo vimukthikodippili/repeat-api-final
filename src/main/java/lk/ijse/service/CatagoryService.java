@@ -5,6 +5,7 @@ import lk.ijse.dto.CatagoryDTO;
 import java.util.ArrayList;
 
 public interface CatagoryService {
+
     void addCatagory(CatagoryDTO dto);
 
     void deleteCuatagory(String id);
